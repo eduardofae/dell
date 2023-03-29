@@ -20,7 +20,7 @@ function consultas() {
         } else if (input.startsWith("3")) {
             showHistorico(cadastros);                      // Exibe o histórico
         } else if (!input.startsWith("q")) {
-            console.log("input inválido\n");             // Erro no input
+            console.log("input inválido\n");               // Erro no input
         }
     }
 }
@@ -119,7 +119,7 @@ function parseTransportes(){
     let valueMean = (value / numItens).toFixed(2);
 
     console.log(`de ${origin} para ${destination}, a distância a ser percorrida é de ${distance} km, para transporte dos produtos (${itensString}) será necessário utilizar ${truckString}, de forma a resultar no menor custo de transporte por km rodado. O valor total do transporte dos itens é R$ ${value}, sendo R$ ${valueMean} o custo unitário médio.`);
-    return new Cadastro(value, valueByPart, valueByKM, valueByItem, valueByTruck, numTrucks, numItens);
+    return new Cadastro(value, valueByPart, valueByKM, valueByItem, valueByTruck, numTrucks, numItens); // Cria o cadastro que será salvo
 }
 
 // Recebe as cidades digitadas pelo usuário e testa se elas são válidas
@@ -233,7 +233,7 @@ function getNumTrucksByPart(itens, cities){
     numTrucks.push(numByTruckType);                                                                         // Adiciona na matriz
     // Para cada trecho : 
     cities.forEach((city, index) => {                        
-        if(index != 0 && index != itens_list.length-1){
+        if(index != 0 && index != cities.length-1){
             weight = getNewWeight(itens_list, city, weight); // Calcula o peso no novo trecho
             numByTruckType = getNumByTruckType(weight);      // Calcula o número de caminhões para levar o novo peso
             numTrucks.push(numByTruckType);                  // Adiciona na matriz
