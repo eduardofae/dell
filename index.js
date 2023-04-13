@@ -311,8 +311,9 @@ function getValueByPart(numTrucks, distances){
     distances.forEach((distance, index) => {
         values[index] = 0;
         numTrucks[index].forEach(truckType => {
-            values[index] += (parseFloat((truckType.getCost() * truckType.getQuantity() * distance)).toFixed(2));
+            values[index] += parseFloat(truckType.getCost() * truckType.getQuantity() * distance);
         })
+        values[index] = values[index].toFixed(2);
     })
     return values;
 }
@@ -321,8 +322,8 @@ function getValueByPart(numTrucks, distances){
 function getValueByTruck(numTrucks, distances){
     let values = [0, 0, 0];
     distances.forEach((distance, index) => {
-        numTrucks[index].forEach((truckType, index) => {
-            values[index] += (truckType.getCost() * truckType.getQuantity() * distance).toFixed(2);
+        numTrucks[index].forEach((truckType, id) => {
+            values[id] += (truckType.getCost() * truckType.getQuantity() * distance).toFixed(2);
         })
     })
     return values;
@@ -332,7 +333,7 @@ function getValueByTruck(numTrucks, distances){
 function getTotalValue(valueByPart){
     let totalValue = 0;
     valueByPart.forEach(value => totalValue += parseFloat(value));
-    return totalValue;
+    return totalValue.toFixed(2);
 }
 
 // Calcula o número total de itens levados
